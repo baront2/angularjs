@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Simple Sidebar Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+
+
+</head>
+
+<body  class="container-fluid">
+  <div class="bs-example">
+      <nav role="navigation" class="navbar navbar-default">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+
+              <a href="#menu-toggle" class="navbar-brand" id="menu-toggle">Menu</a>
+          </div>
+          <!-- Collection of nav links, forms, and other content for toggling -->
+          <div id="navbarCollapse" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="#">Profile</a></li>
+                  <li class="dropdown">
+                      <a data-toggle="dropdown" class="dropdown-toggle" href="#">Messages <b class="caret"></b></a>
+                      <ul role="menu" class="dropdown-menu">
+                          <li><a href="#">Inbox</a></li>
+                          <li><a href="#">Drafts</a></li>
+                          <li><a href="#">Sent Items</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#">Trash</a></li>
+                      </ul>
+                  </li>
+              </ul>
+              <form role="search" class="navbar-form navbar-left">
+                  <div class="form-group">
+                      <input type="text" placeholder="Search" class="form-control">
+                  </div>
+              </form>
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#">Login</a></li>
+              </ul>
+          </div>
+      </nav>
+  </div>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Start Bootstrap
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Shortcuts</a>
+                </li>
+                <li>
+                    <a href="#">Overview</a>
+                </li>
+                <li>
+                    <a href="#">Events</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+        <div ng-app="myApp" ng-controller="customersCtrl">
+        <input type="text" ng-model="fil" class="form-control" placeholder="Filter By Name" required="" autofocus="">
+        <table class="table table-bordered">
+          <tr ng-repeat="x in names | filter :fil">
+            <td>{{ x.Name }}</td>
+            <td>{{ x.Country }}</td>
+          </tr>
+        </table>
+        </div>
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+  <!-- Angular JS Core JavaScript -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+
+    var app = angular.module('myApp', []);
+    app.controller('customersCtrl', function($scope, $http) {
+        $http.get("http://www.w3schools.com/angular/customers.php")
+        .then(function (response) {$scope.names = response.data.records;});
+    });
+    </script>
+
+
+
+
+
+</body>
+
+</html>
